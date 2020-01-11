@@ -48,11 +48,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
    
     }
-  class Login extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: LoginScreen(),
-      );
-    }
-  }
+  // class Login extends StatelessWidget {
+  //   @override
+  //   Widget build(BuildContext context) {
+  //     return MaterialApp(
+  //       home: LoginScreen(),
+  //     );
+  //   }
+  // }
