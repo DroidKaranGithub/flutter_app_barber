@@ -13,73 +13,88 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 20, fontFamily: 'Montserrat-Medium');
+  static const List<Widget> widgetOption = <Widget>[
+   Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Saloon',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Trends',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Offers',
+      style: optionStyle,
+    ),
+  ];
 
-  int cIndex = 0;
-
-  void incrementTab(index) {
+  void onTapped(int index) {
     setState(() {
-      cIndex = index;
-      if(cIndex == 0){
-        Text('Home');
-      }else if(cIndex == 1){
-        Text('Saloon');
-      }else if(cIndex == 2){
-        Text('Trends');
-      }else if(cIndex == 3){
-        Text('Offers');
-      }
+      selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.orange[800]),
       home: Scaffold(
-        bottomNavigationBar: DefaultTabController(
-          length: 4,
-          child: BottomNavigationBar(
-            currentIndex:  cIndex,
-            type: BottomNavigationBarType.fixed,
-            items:<BottomNavigationBarItem> [
-              BottomNavigationBarItem(
-                icon: Image.asset('images/img_home_tab.png',
-                height: 30,
-                width: 30,),
-                title: Text('Home'),
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset('images/img_saloon_list_tab.png',
-                height: 30,
-                width: 30,),
-                title: Text('Saloon'),
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset('images/img_trends_tab.png',
-                height: 30,
-                width: 30,),
-                title: Text('Trends'),
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset('images/img_offers_tab.png',
-                height: 30,
-                width: 30,),
-                title: Text('Offers'),
-              ),
-            ],
-            onTap: (index){
-              incrementTab(index);
-            },
-          ),
-        )
+        body: Center(
+          child: widgetOption.elementAt(selectedIndex),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage("images/img_home_tab.png"),
+                color: Colors.black,
+              ),
+              activeIcon: ImageIcon(
+                AssetImage("images/img_home_tab_selected.png"),
+              ),
+              title: Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage("images/img_saloon_list_tab.png"),
+                color: Colors.black,
+              ),
+              activeIcon: ImageIcon(
+                  AssetImage("images/img_saloon_list_tab_selected.png")),
+              title: Text('Saloon'),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage("images/img_trends_tab.png"),
+                color: Colors.black,
+              ),
+              activeIcon:
+                  ImageIcon(AssetImage("images/img_trends_tab_selected.png")),
+              title: Text('Trends'),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage("images/img_offers_tab.png"),
+                color: Colors.black,
+              ),
+              activeIcon:
+                  ImageIcon(AssetImage("images/img_offers_tab_selected.png")),
+              title: Text('Offers'),
+            ),
+          ],
+          currentIndex: selectedIndex,
+          selectedItemColor: Colors.orange[800],
+          onTap: onTapped,
+        ),
+      ),
     );
   }
 }
-
-enum Tab {
-  TAB1,
-  TAB2,
-  TAB3,
-  TAB4,
-}
-
