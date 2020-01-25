@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
+
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HomeFragment();
+    return TabHome();
   }
 }
 
-class HomeFragment extends StatefulWidget {
+
+class TabHome extends StatefulWidget {
   @override
-  _HomeFragmentState createState() => _HomeFragmentState();
+  _TabHomeState createState() => _TabHomeState();
 }
 
-class _HomeFragmentState extends State<HomeFragment> {
+class _TabHomeState extends State<TabHome> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      color: Colors.teal[300],
     );
   }
 }

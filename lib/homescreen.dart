@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_barber/tabs/booktab.dart';
+import 'package:flutter_app_barber/tabs/hometab.dart';
+import 'package:flutter_app_barber/tabs/navigationtab.dart';
+import 'package:flutter_app_barber/tabs/offerstab.dart';
+import 'package:flutter_app_barber/tabs/trendstab.dart';
+
+import 'common/sliderightroute.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -11,28 +18,16 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
 class _HomeState extends State<Home> {
   int selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 20, fontFamily: 'Montserrat-Medium');
-  static const List<Widget> widgetOption = <Widget>[
-   Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Saloon',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Trends',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Offers',
-      style: optionStyle,
-    ),
+    List<Widget> widgetOption = [
+   HomeTab(),
+   BookTab(),
+   TrendsTab(),
+   OffersTab()
+
   ];
 
   void onTapped(int index) {
@@ -46,8 +41,43 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.orange[800]),
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: Builder(
+            builder: (BuildContext context){
+              return IconButton(
+                icon: ImageIcon(
+                  AssetImage('images/img_nav_open.png'),
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                Navigator.push(context, SlideRightRoute(page: NavigationTab()));
+
+            });}),
+        title: Text("Flutter App"),
+        actions: <Widget>[
+          IconButton(
+            icon: ImageIcon(
+                  AssetImage('images/img_notification_false.png'),
+                  color: Colors.black,
+                ),
+            onPressed: () {
+            },
+          ),
+          // IconButton(
+          //   icon: ImageIcon(
+          //         AssetImage('images/img_home_unselect.png'),
+          //         color: Colors.black,
+          //       ),
+          //   onPressed: () {
+          //   },
+          // )
+        ],
+      
+      ),
+        
         body: Center(
-          child: widgetOption.elementAt(selectedIndex),
+          child: widgetOption.elementAt(selectedIndex)
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
